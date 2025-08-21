@@ -60,11 +60,32 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg leading-8 text-neutral-600 mb-8"
+              className="text-lg leading-8 text-white/90 mb-6"
             >
-              Serviço de qualidade, confiável, com profissionais especialmente selecionados e competentes. 
-              Deixamos sua casa limpa e cheirosa para você aproveitar mais tempo com quem importa.
+              Profissionais verificados e treinados. Produtos inclusos.
+              <span className="font-semibold text-white">Sua casa impecável em poucas horas.</span>
             </motion.p>
+
+            {/* Trust Indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-6 mb-8 justify-center lg:justify-start"
+            >
+              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                <ClockIcon className="h-5 w-5 text-green-400 mr-2" />
+                Atendimento 24h
+              </div>
+              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                <ShieldCheckIcon className="h-5 w-5 text-green-400 mr-2" />
+                Seguro incluso
+              </div>
+              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                <SparklesIcon className="h-5 w-5 text-green-400 mr-2" />
+                Satisfação garantida
+              </div>
+            </motion.div>
 
             {/* Trust indicators */}
             <motion.div
@@ -87,30 +108,53 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Service Buttons */}
+            {/* Primary CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
+              className="flex flex-col sm:flex-row gap-4 mb-8"
+            >
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-center transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg"
+              >
+                📱 Solicitar Orçamento GRÁTIS
+              </a>
+              <a
+                href={`tel:${CONTACT_INFO.phone}`}
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold py-4 px-8 rounded-lg text-center transition-all duration-200"
+              >
+                📞 Ligar Agora
+              </a>
+            </motion.div>
+
+            {/* Service Selection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-3"
             >
               <Link
                 href="/diarista-para-meu-lar"
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg text-center transition-colors"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
               >
-                Diarista para Minha Casa
+                🏠 Diarista para Casa
               </Link>
               <Link
                 href="/servico-de-passadeira"
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg text-center transition-colors"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
               >
-                Serviço de Passadeira
+                👔 Serviço de Passadeira
               </Link>
               <Link
                 href="/limpeza-comercial"
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg text-center transition-colors"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
               >
-                Auxiliar Para Minha Empresa
+                🏢 Limpeza Empresarial
               </Link>
             </motion.div>
           </motion.div>

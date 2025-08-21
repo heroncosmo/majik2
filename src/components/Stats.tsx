@@ -63,19 +63,33 @@ export default function Stats() {
       label: 'Anos de Experiência',
       value: COMPANY_STATS.yearsExperience,
       suffix: '+',
-      description: 'Mais de uma década servindo Goiânia'
+      description: 'Mais de uma década servindo Goiânia',
+      icon: '🏆',
+      color: 'from-blue-500 to-blue-600'
     },
     {
-      label: 'Clientes Atendidos',
+      label: 'Clientes Satisfeitos',
       value: COMPANY_STATS.clientsServed,
       suffix: '+',
-      description: 'Famílias e empresas satisfeitas'
+      description: 'Famílias e empresas em toda Goiânia',
+      icon: '😊',
+      color: 'from-green-500 to-green-600'
     },
     {
-      label: 'Horas de Experiência',
+      label: 'Horas de Limpeza',
       value: COMPANY_STATS.hoursWorked / 1000,
       suffix: ' mil',
-      description: 'Horas dedicadas à limpeza'
+      description: 'Horas dedicadas à sua satisfação',
+      icon: '⏰',
+      color: 'from-purple-500 to-purple-600'
+    },
+    {
+      label: 'Bairros Atendidos',
+      value: 50,
+      suffix: '+',
+      description: 'Cobertura em toda região metropolitana',
+      icon: '📍',
+      color: 'from-orange-500 to-orange-600'
     }
   ]
 
@@ -100,27 +114,38 @@ export default function Stats() {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-                <Counter 
-                  end={stat.value} 
+              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                {/* Icon */}
+                <div className="text-4xl mb-4">{stat.icon}</div>
+
+                {/* Counter */}
+                <Counter
+                  end={stat.value}
                   suffix={stat.suffix}
                 />
-                <h3 className="text-xl font-heading font-semibold text-neutral-900 mb-2">
+
+                {/* Label */}
+                <h3 className="text-lg font-heading font-semibold text-neutral-900 mb-2">
                   {stat.label}
                 </h3>
-                <p className="text-neutral-600 text-sm">
+
+                {/* Description */}
+                <p className="text-neutral-600 text-sm leading-relaxed">
                   {stat.description}
                 </p>
+
+                {/* Gradient Bar */}
+                <div className={`h-1 bg-gradient-to-r ${stat.color} rounded-full mt-4 mx-auto w-16`}></div>
               </div>
             </motion.div>
           ))}

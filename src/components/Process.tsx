@@ -28,11 +28,11 @@ export default function Process() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl font-heading font-bold tracking-tight text-neutral-900 sm:text-4xl mb-4">
-            Contrate em Apenas <span className="text-gradient">3 Passos</span>
+            Contrate em Apenas <span className="text-gradient">3 Passos Simples</span>
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Nosso processo é simples, rápido e transparente. 
-            Em poucos minutos você terá seu serviço agendado.
+            Processo 100% digital e seguro. Agende seu serviço em menos de 2 minutos
+            e tenha profissionais verificados na sua casa ou empresa.
           </p>
         </motion.div>
 
