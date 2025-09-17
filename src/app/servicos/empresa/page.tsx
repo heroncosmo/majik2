@@ -7,9 +7,9 @@ import BookingForm from '@/components/BookingForm'
 import { SERVICES } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Limpeza Empresarial em Goiânia | Majik Serviços',
-  description: 'Serviços de limpeza para empresas em Goiânia. Ambiente profissional limpo e saudável. Equipe especializada e contratos flexíveis.',
-  keywords: 'limpeza empresarial Goiânia, limpeza escritório, serviços corporativos, limpeza comercial',
+  title: 'Nettoyage d\'Entreprise à Goiânia | Majik Services',
+  description: 'Services de nettoyage pour entreprises à Goiânia. Environnement professionnel propre et sain. Équipe spécialisée et contrats flexibles.',
+  keywords: 'nettoyage d\'entreprise Goiânia, nettoyage bureau, services corporatifs, nettoyage commercial',
 }
 
 export default function EmpresaPage() {

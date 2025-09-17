@@ -50,7 +50,7 @@ export default function ProfessionalSection() {
               className="hover:opacity-80 transition-opacity"
             >
               <img
-                src="https://majik.com.br/wp-content/uploads/2025/02/App-Store-1024x328.png"
+                src="/images/app-store.png"
                 alt="Download na App Store"
                 className="h-16 w-auto"
               />
@@ -63,7 +63,7 @@ export default function ProfessionalSection() {
               className="hover:opacity-80 transition-opacity"
             >
               <img
-                src="https://majik.com.br/wp-content/uploads/2025/02/GooglePlay-1024x328.png"
+                src="/images/google-play.png"
                 alt="Baixar no Google Play"
                 className="h-16 w-auto"
               />

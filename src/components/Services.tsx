@@ -19,208 +19,189 @@ const iconMap = {
 }
 
 export default function Services() {
-  const whatsappMessage = 'Olá! Gostaria de solicitar um orçamento para serviços de limpeza.'
+  const whatsappMessage = 'Bonjour! J\'aimerais demander un devis pour les services de nettoyage.'
   const whatsappLink = generateWhatsAppLink(CONTACT_INFO.whatsapp, whatsappMessage)
 
+  // Filter main domestic services
+  const domesticServices = SERVICES.filter(service =>
+    service.id === 'diarista-casa' || service.id === 'passadeira'
+  )
+
+  const commercialService = SERVICES.find(service => service.id === 'auxiliar-empresa')
+
   return (
-    <section id="servicos" className="section-padding bg-white">
+    <section id="servicos" className="py-16 lg:py-24 bg-white">
       <div className="container-custom">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl font-heading font-bold tracking-tight text-neutral-900 sm:text-4xl mb-4">
-            Nossos <span className="text-gradient">Serviços</span>
+        {/* Header - Focused on Domestic Services */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-6">
+            Services de Nettoyage Domestique
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Oferecemos soluções completas de limpeza para sua casa e empresa, 
-            com profissionais qualificados e produtos de qualidade.
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+            Professionnels qualifiés pour prendre soin de votre maison avec qualité et confiance.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {SERVICES.map((service, index) => {
+        {/* Main Domestic Services */}
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
+          {domesticServices.map((service, index) => {
             const IconComponent = iconMap[service.icon as keyof typeof iconMap] || HomeIcon
-            
+            const isMainService = service.id === 'diarista-casa'
+
             return (
-              <motion.div
+              <div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className={`group ${isMainService ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
-                {/* Service Image */}
-                <div className="relative h-48 mb-6 rounded-lg overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-${
-                      service.id === 'diarista-casa' ? '1581578731548-c64695cc6952' :
-                      service.id === 'passadeira' ? '1582735689369-4b0a4c6d8e8c' :
-                      '1497366216548-37526070297c'
-                    }?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`}
-                    alt={service.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                      <IconComponent className="h-6 w-6 text-primary-600" />
-                    </div>
-                  </div>
-                </div>
+                <div className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-neutral-100 hover:border-blue-200 overflow-hidden h-full ${isMainService ? 'ring-2 ring-blue-100' : ''}`}>
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={`https://images.unsplash.com/photo-${
+                        service.id === 'diarista-casa' ? '1581578731548-c64695cc6952' :
+                        service.id === 'passadeira' ? '1582735689369-4b0a4c6d8e8c' :
+                        '1497366216548-37526070297c'
+                      }?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`}
+                      alt={service.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
 
-                {/* Service Content */}
-                <div className="space-y-4">
-                  <h3 className="text-xl font-heading font-semibold text-neutral-900">
-                    {service.name}
-                  </h3>
-                  
-                  <p className="text-neutral-600 text-sm leading-relaxed">
-                    {service.shortDescription}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-2">
-                    {service.features.slice(0, 3).map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-neutral-600">
-                        <CheckCircleIcon className="h-4 w-4 text-secondary-500 mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Pricing */}
-                  {service.pricing && (
-                    <div className="pt-4 border-t border-neutral-100">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-neutral-600">A partir de</span>
-                        <span className="text-lg font-semibold text-primary-600">
-                          {service.pricing.type === 'hourly' && service.pricing.value
-                            ? `R$ ${service.pricing.value}/${service.pricing.unit}`
-                            : 'Sob consulta'
-                          }
-                        </span>
+                    {/* Icon Badge */}
+                    <div className="absolute top-4 left-4">
+                      <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-md">
+                        <IconComponent className="h-6 w-6 text-blue-600" />
                       </div>
                     </div>
-                  )}
 
-                  {/* CTA Button */}
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full btn-primary text-center inline-flex items-center justify-center group"
-                  >
-                    Solicitar Orçamento
-                    <ArrowRightIcon className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                    {/* Popular Badge */}
+                    {isMainService && (
+                      <div className="absolute top-4 right-4">
+                        <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-md">
+                          Plus Demandé
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Service Content */}
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-semibold text-neutral-900 leading-tight">
+                      {service.name}
+                    </h3>
+
+                    <p className="text-neutral-600 leading-relaxed">
+                      {service.shortDescription}
+                    </p>
+
+                    {/* Features */}
+                    <ul className="space-y-2">
+                      {service.features.slice(0, 3).map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-neutral-700">
+                          <CheckCircleIcon className="h-4 w-4 text-emerald-500 mr-3 flex-shrink-0" />
+                          <span className="text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Pricing */}
+                    {service.pricing && (
+                      <div className="pt-3 border-t border-neutral-100">
+                        <div className="flex items-center justify-between">
+                          <span className="text-neutral-600 text-sm">À partir de</span>
+                          <span className="text-lg font-semibold text-blue-600">
+                            {service.pricing.type === 'hourly' && service.pricing.value
+                              ? `R$ ${service.pricing.value}/${service.pricing.unit}`
+                              : 'Sur consultation'
+                            }
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CTA Button */}
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg text-center inline-flex items-center justify-center transition-colors"
+                    >
+                      Demander un Devis
+                      <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>
 
-        {/* Additional Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-heading font-semibold text-neutral-900 mb-8">
-            Outros Serviços
+        {/* Commercial Service */}
+        {commercialService && (
+          <div className="mb-16">
+            <h3 className="text-2xl font-semibold text-neutral-900 mb-8 text-center">
+              Nettoyage Commercial
+            </h3>
+            <div className="max-w-md mx-auto">
+              <div className="bg-neutral-50 rounded-xl p-6 text-center">
+                <BuildingOfficeIcon className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  {commercialService.name}
+                </h4>
+                <p className="text-neutral-600 mb-4 text-sm">
+                  {commercialService.shortDescription}
+                </p>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors"
+                >
+                  Demander un Devis
+                  <ArrowRightIcon className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Other Services - Minimized */}
+        <div className="text-center">
+          <h3 className="text-xl font-medium text-neutral-700 mb-6">
+            Outros Serviços Disponíveis
           </h3>
 
-          {/* Services Grid with Images */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          {/* Simplified Services List */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              {
-                name: 'Portaria',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/architecture-2083687_640-300x200.jpg',
-                href: '/gerente-predial'
-              },
-              {
-                name: 'Recepcionista',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/Recepcionista-300x300.jpg',
-                href: '/recepcionista'
-              },
-              {
-                name: 'Vigilante',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/o-que-faz-um-vigilante-300x200.jpg',
-                href: '/vigilante'
-              },
-              {
-                name: 'Zelador',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/zelador-300x240.jpg',
-                href: '/zelador'
-              },
-              {
-                name: 'Passadeiras',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/WhatsApp-Image-2020-04-18-at-18.02.36-300x200.jpeg',
-                href: '/passadeiras'
-              },
-              {
-                name: 'Motorista/Motociclista',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/Motorista-300x200.jpg',
-                href: '/motorista'
-              },
-              {
-                name: 'Auxiliar de Limpeza',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/WhatsApp-Image-2020-04-18-at-18.02.32-300x300.jpeg',
-                href: '/auxiliar-de-limpeza'
-              },
-              {
-                name: 'Cuidador de idosos',
-                image: 'https://majik.com.br/wp-content/uploads/2020/04/Cuidador-de-idosos-300x169.jpg',
-                href: '/cuidador-de-idosos-2'
-              }
+              'Portaria',
+              'Recepcionista',
+              'Vigilante',
+              'Zelador',
+              'Motorista',
+              'Cuidador de Idosos'
             ].map((service, index) => (
-              <motion.div
-                key={service.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="group"
+              <div
+                key={service}
+                className="bg-neutral-50 rounded-lg p-4 text-center hover:bg-neutral-100 transition-colors"
               >
-                <Link
-                  href={service.href}
-                  className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                >
-                  <div className="aspect-w-4 aspect-h-3">
-                    <img
-                      src={service.image}
-                      alt={service.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h4 className="font-semibold text-neutral-900 text-center">
-                      {service.name}
-                    </h4>
-                  </div>
-                </Link>
-              </motion.div>
+                <span className="text-sm font-medium text-neutral-700">
+                  {service}
+                </span>
+              </div>
             ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6">
             <Link
               href="/nossos-servicos"
-              className="btn-outline inline-flex items-center"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
             >
-              <ArrowRightIcon className="mr-2 h-4 w-4" />
-              Saiba Mais
+              Ver Todos os Serviços
+              <ArrowRightIcon className="ml-1 h-4 w-4" />
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

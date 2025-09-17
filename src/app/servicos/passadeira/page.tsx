@@ -7,9 +7,9 @@ import BookingForm from '@/components/BookingForm'
 import { SERVICES } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Serviço de Passadeira em Goiânia | Majik Serviços',
-  description: 'Serviço profissional de passar roupas em Goiânia. Cuidado especial com tecidos delicados. Atendimento em domicílio. Agende agora!',
-  keywords: 'passadeira Goiânia, passar roupas, serviço de passadeira, cuidado com roupas',
+  title: 'Service de Repassage à Goiânia | Majik Services',
+  description: 'Service professionnel de repassage à Goiânia. Soin particulier pour les tissus délicats. Service à domicile. Réservez maintenant!',
+  keywords: 'repassage Goiânia, repasser vêtements, service de repassage, soin des vêtements',
 }
 
 export default function PassadeiraPage() {

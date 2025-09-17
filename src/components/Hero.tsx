@@ -1,200 +1,106 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ChevronRightIcon, SparklesIcon, ClockIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { CONTACT_INFO } from '@/lib/constants'
 import { generateWhatsAppLink } from '@/lib/utils'
 
 export default function Hero() {
-  const whatsappMessage = 'Olá! Gostaria de solicitar um orçamento para serviços de limpeza.'
+  const whatsappMessage = 'Bonjour! J\'aimerais demander un devis pour les services de nettoyage.'
   const whatsappLink = generateWhatsAppLink(CONTACT_INFO.whatsapp, whatsappMessage)
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
-      {/* Background image overlay */}
-      <div className="absolute inset-0 bg-black/20"></div>
-
-      {/* Background decoration */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-200"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-400"></div>
+    <section className="relative bg-neutral-900 min-h-[700px] lg:min-h-[800px] flex items-center">
+      {/* Professional Background Video/Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+        }}
+      >
+        {/* Dark Overlay for Professional Look */}
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      <div className="relative container-custom section-padding">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 ring-1 ring-inset ring-primary-700/10 mb-6"
-            >
-              <SparklesIcon className="h-4 w-4 mr-2" />
-              Mais de 15 anos de experiência
-            </motion.div>
+      {/* Content */}
+      <div className="relative container-custom py-16 lg:py-24 w-full">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Ayez plus de temps libre!
+          </h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl font-heading font-bold tracking-tight text-white sm:text-6xl mb-6"
-            >
-              Tenha mais{' '}
-              <span className="relative">
-                tempo livre!
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-accent-400" viewBox="0 0 500 150" preserveAspectRatio="none">
-                  <path d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9" stroke="currentColor" strokeWidth="3" fill="none"/>
-                </svg>
-              </span>
-            </motion.h1>
+          <p className="text-xl text-white/90 mb-12 leading-relaxed max-w-2xl">
+            Service de qualité, fiable, avec des professionnels spécialement sélectionnés et compétents. Engagez maintenant!
+          </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg leading-8 text-white/90 mb-6"
+          {/* Service Selection */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <Link
+              href="/diarista-para-meu-lar"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
-              Profissionais verificados e treinados. Produtos inclusos.
-              <span className="font-semibold text-white">Sua casa impecável em poucas horas.</span>
-            </motion.p>
+              Femme de Ménage pour Ma Maison
+            </Link>
+            <Link
+              href="/servico-de-passadeira"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-8 rounded-lg text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Service de Repassage
+            </Link>
+            <Link
+              href="/limpeza-comercial"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-4 px-8 rounded-lg text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Aide Pour Mon Entreprise
+            </Link>
+          </div>
+          {/* Professional Section */}
+          <div className="border-t border-white/20 pt-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Vous êtes professionnel du nettoyage?
+            </h2>
 
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-6 mb-8 justify-center lg:justify-start"
-            >
-              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <ClockIcon className="h-5 w-5 text-green-400 mr-2" />
-                Atendimento 24h
-              </div>
-              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <ShieldCheckIcon className="h-5 w-5 text-green-400 mr-2" />
-                Seguro incluso
-              </div>
-              <div className="flex items-center text-sm text-white/80 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <SparklesIcon className="h-5 w-5 text-green-400 mr-2" />
-                Satisfação garantida
-              </div>
-            </motion.div>
+            <p className="text-white/90 mb-8 text-lg">
+              Inscrivez-vous et recevez des offres de clients sur votre téléphone!
+            </p>
 
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-6 mb-8 justify-center lg:justify-start"
-            >
-              <div className="flex items-center text-sm text-neutral-600">
-                <ClockIcon className="h-5 w-5 text-primary-500 mr-2" />
-                Horários flexíveis
-              </div>
-              <div className="flex items-center text-sm text-neutral-600">
-                <ShieldCheckIcon className="h-5 w-5 text-primary-500 mr-2" />
-                Profissionais verificados
-              </div>
-              <div className="flex items-center text-sm text-neutral-600">
-                <SparklesIcon className="h-5 w-5 text-primary-500 mr-2" />
-                Produtos inclusos
-              </div>
-            </motion.div>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <Link
+                href="/trabalhe-conosco"
+                className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                Inscrivez-vous Maintenant
+              </Link>
 
-            {/* Primary CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 mb-8"
-            >
               <a
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-center transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg"
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                📱 Solicitar Orçamento GRÁTIS
+                Parler sur WhatsApp
               </a>
-              <a
-                href={`tel:${CONTACT_INFO.phone}`}
-                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold py-4 px-8 rounded-lg text-center transition-all duration-200"
-              >
-                📞 Ligar Agora
-              </a>
-            </motion.div>
-
-            {/* Service Selection */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-3"
-            >
-              <Link
-                href="/diarista-para-meu-lar"
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
-              >
-                🏠 Diarista para Casa
-              </Link>
-              <Link
-                href="/servico-de-passadeira"
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
-              >
-                👔 Serviço de Passadeira
-              </Link>
-              <Link
-                href="/limpeza-comercial"
-                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-medium py-3 px-4 rounded-lg text-center transition-all duration-200 text-sm"
-              >
-                🏢 Limpeza Empresarial
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                alt="Profissional de limpeza da Majik trabalhando"
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
-            
-            {/* Floating card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-6 max-w-xs"
-            >
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center">
-                    <SparklesIcon className="h-6 w-6 text-secondary-600" />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-neutral-900">1200+ Clientes</p>
-                  <p className="text-xs text-neutral-600">Satisfeitos com nossos serviços</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">15+</div>
+              <div className="text-white/80 text-sm">Ans d'Expérience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">1200+</div>
+              <div className="text-white/80 text-sm">Clients Servis</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">100%</div>
+              <div className="text-white/80 text-sm">Professionnels Vérifiés</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">24h</div>
+              <div className="text-white/80 text-sm">Support Disponible</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

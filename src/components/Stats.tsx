@@ -24,9 +24,9 @@ function Counter({ end, duration = 2000, suffix = '', prefix = '' }: CounterProp
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime
       const progress = Math.min((currentTime - startTime) / duration, 1)
-      
+
       setCount(Math.floor(progress * end))
-      
+
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate)
       }
@@ -41,19 +41,16 @@ function Counter({ end, duration = 2000, suffix = '', prefix = '' }: CounterProp
     }
   }, [end, duration, isVisible])
 
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      onViewportEnter={() => setIsVisible(true)}
-      className="text-center"
-    >
-      <div className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
+    <div className="text-center">
+      <div className="text-3xl lg:text-4xl font-semibold text-blue-600 mb-2 tracking-tight">
         {prefix}{count.toLocaleString('pt-BR')}{suffix}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -63,79 +60,60 @@ export default function Stats() {
       label: 'Anos de Experiência',
       value: COMPANY_STATS.yearsExperience,
       suffix: '+',
-      description: 'Mais de uma década servindo Goiânia',
-      icon: '🏆',
-      color: 'from-blue-500 to-blue-600'
+      description: 'Mais de uma década servindo Goiânia'
     },
     {
       label: 'Clientes Satisfeitos',
       value: COMPANY_STATS.clientsServed,
       suffix: '+',
-      description: 'Famílias e empresas em toda Goiânia',
-      icon: '😊',
-      color: 'from-green-500 to-green-600'
+      description: 'Famílias e empresas em toda Goiânia'
     },
     {
       label: 'Horas de Limpeza',
       value: COMPANY_STATS.hoursWorked / 1000,
       suffix: ' mil',
-      description: 'Horas dedicadas à sua satisfação',
-      icon: '⏰',
-      color: 'from-purple-500 to-purple-600'
+      description: 'Horas dedicadas à sua satisfação'
     },
     {
       label: 'Bairros Atendidos',
       value: 50,
       suffix: '+',
-      description: 'Cobertura em toda região metropolitana',
-      icon: '📍',
-      color: 'from-orange-500 to-orange-600'
+      description: 'Cobertura em toda região metropolitana'
     }
   ]
 
   return (
-    <section className="section-padding gradient-bg">
+    <section className="py-16 lg:py-24 bg-white">
       <div className="container-custom">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl font-heading font-bold tracking-tight text-neutral-900 sm:text-4xl mb-4">
-            Números que <span className="text-gradient">Falam por Si</span>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-6">
+            Números que Falam por Si
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Nossa experiência e dedicação se refletem nos números. 
-            Cada estatística representa nosso compromisso com a excelência.
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+            Nossa experiência e dedicação se refletem nos números.
           </p>
-        </motion.div>
+        </div>
 
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <motion.div
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                {/* Icon */}
-                <div className="text-4xl mb-4">{stat.icon}</div>
+              <div className="bg-neutral-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                {/* Number */}
 
-                {/* Counter */}
-                <Counter
-                  end={stat.value}
-                  suffix={stat.suffix}
-                />
+                <div className="mb-4">
+                  <Counter
+                    end={stat.value}
+                    suffix={stat.suffix}
+                  />
+                </div>
 
                 {/* Label */}
-                <h3 className="text-lg font-heading font-semibold text-neutral-900 mb-2">
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2">
                   {stat.label}
                 </h3>
 
@@ -143,54 +121,12 @@ export default function Stats() {
                 <p className="text-neutral-600 text-sm leading-relaxed">
                   {stat.description}
                 </p>
-
-                {/* Gradient Bar */}
-                <div className={`h-1 bg-gradient-to-r ${stat.color} rounded-full mt-4 mx-auto w-16`}></div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-heading font-semibold text-neutral-900 mb-6">
-              Crescimento Constante
-            </h3>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-neutral-900 mb-2">Crescimento Anual</h4>
-                <p className="text-neutral-600 text-sm">
-                  Expandimos nossos serviços continuamente para atender melhor nossos clientes
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary-100 to-secondary-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-neutral-900 mb-2">Satisfação do Cliente</h4>
-                <p className="text-neutral-600 text-sm">
-                  95% dos nossos clientes recomendam nossos serviços para amigos e familiares
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   )

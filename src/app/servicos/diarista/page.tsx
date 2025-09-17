@@ -7,9 +7,9 @@ import BookingForm from '@/components/BookingForm'
 import { SERVICES } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Diarista para Casa em Goiânia | Majik Serviços de Limpeza',
-  description: 'Contrate diarista profissional para sua casa em Goiânia. Limpeza completa, profissionais qualificados e produtos inclusos. Agende agora!',
-  keywords: 'diarista Goiânia, limpeza residencial, diarista para casa, serviço doméstico',
+  title: 'Femme de Ménage pour Maison à Goiânia | Majik Services de Nettoyage',
+  description: 'Engagez une femme de ménage professionnelle pour votre maison à Goiânia. Nettoyage complet, professionnels qualifiés et produits inclus. Réservez maintenant!',
+  keywords: 'femme de ménage Goiânia, nettoyage résidentiel, femme de ménage maison, service domestique',
 }
 
 export default function DiaristaPage() {

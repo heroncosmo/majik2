@@ -9,98 +9,86 @@ export default function Testimonials() {
       name: "Maria Silva",
       location: "Setor Bueno, Goiânia",
       rating: 5,
-      comment: "Excelente serviço! A diarista foi muito cuidadosa e deixou minha casa impecável. Já contratei várias vezes e sempre fico satisfeita.",
-      service: "Diarista para Casa",
-      date: "Há 2 semanas",
+      comment: "Excellent service! La femme de ménage a été très soigneuse et a laissé ma maison impeccable. J'ai déjà engagé plusieurs fois et je suis toujours satisfaite.",
+      service: "Femme de Ménage pour Maison",
+      date: "Il y a 2 semaines",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "João Santos",
       location: "Setor Oeste, Goiânia",
       rating: 5,
-      comment: "Contratei para minha empresa e o resultado superou as expectativas. Equipe pontual, profissional e muito eficiente.",
-      service: "Limpeza Empresarial",
-      date: "Há 1 semana",
+      comment: "J'ai engagé pour mon entreprise et le résultat a dépassé les attentes. Équipe ponctuelle, professionnelle et très efficace.",
+      service: "Nettoyage d'Entreprise",
+      date: "Il y a 1 semaine",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Ana Costa",
       location: "Jardim Goiás, Goiânia",
       rating: 5,
-      comment: "O serviço de passadeira é incrível! Minhas roupas ficaram perfeitas. Recomendo para todas as minhas amigas.",
-      service: "Serviço de Passadeira",
-      date: "Há 3 dias",
+      comment: "Le service de repassage est incroyable! Mes vêtements étaient parfaits. Je le recommande à toutes mes amies.",
+      service: "Service de Repassage",
+      date: "Il y a 3 jours",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Carlos Oliveira",
       location: "Setor Marista, Goiânia",
       rating: 5,
-      comment: "Já uso os serviços há mais de 1 ano. Sempre pontuais, honestos e fazem um trabalho impecável. Confiança total!",
-      service: "Diarista para Casa",
-      date: "Há 5 dias",
+      comment: "J'utilise les services depuis plus d'1 an. Toujours ponctuels, honnêtes et font un travail impeccable. Confiance totale!",
+      service: "Femme de Ménage pour Maison",
+      date: "Il y a 5 jours",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Fernanda Lima",
       location: "Setor Sul, Goiânia",
       rating: 5,
-      comment: "Profissionais muito qualificados! Cuidaram da minha casa como se fosse deles. Preço justo e qualidade excepcional.",
-      service: "Diarista para Casa",
-      date: "Há 1 semana",
+      comment: "Professionnels très qualifiés! Ils ont pris soin de ma maison comme si c'était la leur. Prix juste et qualité exceptionnelle.",
+      service: "Femme de Ménage pour Maison",
+      date: "Il y a 1 semaine",
       avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       name: "Roberto Mendes",
       location: "Setor Campinas, Goiânia",
       rating: 5,
-      comment: "Excelente custo-benefício! O atendimento é rápido e a qualidade do serviço é sempre consistente. Muito satisfeito.",
-      service: "Limpeza Empresarial",
-      date: "Há 4 dias",
+      comment: "Excellent rapport qualité-prix! Le service est rapide et la qualité du service est toujours cohérente. Très satisfait.",
+      service: "Nettoyage d'Entreprise",
+      date: "Il y a 4 jours",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     }
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-br from-neutral-50 to-white">
+    <section className="py-16 lg:py-24 bg-neutral-50">
       <div className="container-custom">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl font-heading font-bold tracking-tight text-neutral-900 sm:text-4xl mb-4">
-            O que nossos <span className="text-gradient">clientes dizem</span>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-neutral-900 mb-4">
+            Ce que disent nos clients
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Mais de 1.200 famílias e empresas em Goiânia confiam na Majik. 
-            Veja alguns depoimentos reais dos nossos clientes satisfeitos.
+            Plus de 1.200 familles et entreprises à Goiânia font confiance à Majik.
+            Découvrez quelques témoignages réels de nos clients satisfaits.
           </p>
-        </motion.div>
+        </div>
 
         {/* Overall Rating */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <div className="inline-flex items-center bg-white rounded-2xl shadow-lg px-8 py-6">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center bg-white rounded-xl shadow-md px-8 py-6">
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                  <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <div className="text-3xl font-bold text-neutral-900 mb-1">4.9/5</div>
+              <div className="text-2xl font-semibold text-neutral-900 mb-1">4.9/5</div>
               <div className="text-sm text-neutral-600">Baseado em 1.200+ avaliações</div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
